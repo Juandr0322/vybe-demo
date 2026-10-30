@@ -81,6 +81,16 @@ ul,ol{margin:0;padding:0;list-style:none}
 .steps .d{font-size:12.5px;color:var(--muted);display:block;line-height:1.35}
 .steps .time{font:500 11px var(--font-mono);color:var(--muted)}
 .rail-note{font-size:12.5px;line-height:1.5;color:var(--muted);max-width:38ch}
+.rail-qr{display:grid;grid-template-columns:96px 1fr;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:12px}
+.rail-qr img{width:96px;height:96px;image-rendering:pixelated;border-radius:6px;background:#fff}
+.how{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:6px 11px;font:600 11px var(--font-mono);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap}
+.how::before{content:"i";display:grid;place-items:center;width:15px;height:15px;border-radius:50%;background:var(--ink);color:var(--bg);font:700 10px var(--font-body);letter-spacing:0;text-transform:none}
+.howlist{display:flex;flex-direction:column;gap:12px}
+.howlist li{display:grid;grid-template-columns:26px 1fr;gap:10px;align-items:start}
+.howlist li .n{font:600 12px var(--font-mono);color:var(--accent);padding-top:2px}
+.howlist li b{display:block;font-weight:650}
+.howlist li p{color:var(--muted);font-size:14px}
+.proto{border-radius:14px;background:var(--surface-2);padding:12px 14px;font-size:13px;color:var(--muted)}
 
 /* app frame */
 .app{position:absolute;inset:0;display:flex;flex-direction:column}
@@ -288,6 +298,7 @@ body.no-3d .stage .msg.fallback{display:grid}
     <div class="eyebrow">Demo path · about 5 minutes</div>
     <ol class="steps" id="railSteps"></ol>
     <div><button class="btn sm" data-action="reset">Reset demo</button></div>
+    <div class="rail-qr"><img alt="QR code for juandr0322.github.io/vybe-demo" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKUAAAClAQAAAAAVUAB3AAAFg0lEQVR42t2XwYscxxnFf1XTVreIUPfm4F0IuCuDIScjQcCYxKzbinB090kYIuGTfEvAhzUM3pJWmAmB4FsugcU3/wk6LKZmkQ7+GyyaYpODffG2bbDauF1fDlU907taH3JM+jDMfjNTVe/73nv1VgnPPz9oLnr+16qIA3LpgF1mAlD3/80KGXoOL8ASXn1bU1jY/tl1lYiwqsVzXFpykQE0xbjDnAZM2q0HKiC0yhV4oEln6LQB/kgPgBtPFjwsH02wrTrqXLqZiHT7kjsWda/JGPcg7WDRDIBfVzvAkgHL7Xuw3Bww9mHPAnuAAkLLBMUHRjVy36xR6DnVune+WEYUoaUjjNv1eyOKBoDC6nlaXAM3HEDT29CCygFNpj7DHPPwEygPfDXrIwoBj4I5FHRDxAYFIJo/QZ/Qa2DHAlfnNh7i3YhCeUvGn1sFYLIPgYz+qrDzOzh8T1T1zy9/Lz/9a5wFaNvHjk1mwQZcZEl6CrbY2lTTLHpOOeXqOIsflVL++JuhyQ+6BV8pldkJ+9ymT1NOGnT8CDIub8GLAJ4ALxt4h4xnp/B9prD3MuDpU/jiNiIiIoF9D8ziX1MFVKjzCsjgusnPY7uCWqmXvjtX7RARP5twclHnIkOWu9LWspKD6W4Dhb1Ab6a31XNVcxe+XfchUzQVcGK1CY4sjnzVgazEHoorB/JQDlN123PqHj+ZniFTV+cRTm+5ZVN1kK4lY2gAHn2MoQFxpQi75YGXYPZ9Lt3USyoSNZmqJdJG4uaa3q5312DgI9BgobcGDW+R+ag8OS7F97v8wkM5MHYy0a4/51wGsCNroiAyiruAnTs95xVejr/S9BYNLaFtHU/TICWU4nPHogYW5KG0G2w3oVjGdlbrLqoj2Nn7mL8mkYBBGwE8f+FZlRDjCT7TNNwQTIcJTXIuCbWtRWSoz86tu9iV4xtr1uxbbkMT22G/TBN60lFLKJd3JutGr0bJgIRyqCFh03OmMmiil1xqN+bZdMppiyZ7jZO5gZsATpUE0Ayu+rD9NxyBgVkXOSmdrfs3xNY95YDZLZMCHoBNnLR+7VEBLNqiwFp8IopJDvMH+OUDqCCD4A/jZI+u8XWRun7M/puXpXqf3PmHd8Q1P5nUKpkYiovrJnY2XI5vM9AgqC3A8YwZBoYGTQZyGu8RM+ChciCBRXpZiUgezCJ2MrLIJjIlFJe4EqvDWo8aejqYU6WuZ7FqaKDl28SA15OXzHwuIpI/6RY1SkZO6tFNRjwa1NSRDSiHBjGTu/DkJrN4WM9dgKpQNOGIISngpKccyAP7XsI4t7NOP1FAhFSsr4kkloa53egzA0PGUUmb8+tRqlHOuXTU264cQJ11ZdtdpACLYjSW9Y3z0T8Q2LkXZytP5G+yLR319uNr47rpDnBQ5ysZallNnUubZmKWY/XSiZuMNO2mdzymiK1fbo/V4Ct8ArxX307ZKGCRUNo7uZt6ib6fOFkk9gGwKybmgZ4rzTpzueIEmIGic2SEFnKKHQ9moJKxkyK5yIH0u1S1PC6Hw36TudJwUlIYMxfPIU4Nn9+wURp64qS2/Qxmk8zlyqHud1mAEnt4NnPNN1yfZK6WJn5BA0sbFW7h8U1PFvu7VxM8DbZiOHqBwYJ83hFdTFZijay6qu7HzJWeu2v2hZZuTJcPJixpPsXTACFQ8PBXZOvMlS7SnkV9G3nyDfVvHPteXDlUPdGVY+ZKzbq+6VnBOjgeszWm1x2L7oGsIXAtJqZCeUtQaAY3Bpw4t+1gZl4ci1u92iSFDh9XeKSKc7mEwYH0Z3LJbzVk6LG/cRbXXUBf4e/46MoOyF0U9oCITDipLrxxJGqXM5lL32IAz60YIzTPTk9PfUip/BHQW9T/8X9U/wGfgI8jja3zFwAAAABJRU5ErkJggg=="><div style="display:flex;flex-direction:column;gap:4px;min-width:0"><span style="font-weight:650">Try it on your phone</span><span class="mono small muted" style="overflow-wrap:anywhere">juandr0322.github.io/vybe-demo</span></div></div>
     <p class="rail-note">Clickable prototype. Everything runs in the browser: body measuring, background removal, tagging and styling are simplified stand-ins for the full build (MediaPipe on the phone, Claude for tagging and styling). Nothing you add leaves this page.</p>
   </aside>
 
@@ -302,7 +313,7 @@ body.no-3d .stage .msg.fallback{display:grid}
         <section class="screen" id="screen-closet" aria-label="Closet" hidden><div class="pad" id="closetBody"></div></section>
         <section class="screen" id="screen-locker" aria-label="Locker" hidden>
           <div class="pad">
-            <div class="row"><div><p class="eyebrow">Locker</p><h1 class="h1">Dress your avatar</h1></div></div>
+            <div class="row"><div><p class="eyebrow">Locker</p><h1 class="h1">Dress your avatar</h1></div><button class="how" data-action="how" data-k="locker">How</button></div>
             <div class="stage" id="stageLocker">
               <div class="fitbar" id="fitbar" hidden></div>
               <div class="msg loading">Loading 3D…</div>
@@ -466,7 +477,7 @@ const STEPS=[
 function seedCloset(){return SEED.map(([id,name,cat,sub,color,colorName,material,pattern,warmth,formality,wp])=>({id,name,cat,sub,color,colorName,material,pattern,warmth,formality,waterproof:!!wp}))}
 function initialState(){return{
   tab:'today',closet:seedCloset(),closetFilter:'all',
-  outfit:{top:'t1',outerwear:'o2',bottom:'b1',shoes:'s1',accessory:null},
+  outfit:{top:'t2',outerwear:'o2',bottom:'b1',shoes:'s1',accessory:null},
   slot:'top',saved:[{name:'Rainy commute',outfit:{top:'t3',outerwear:'o1',bottom:'b1',shoes:'s3',accessory:null}},{name:'Friday dinner',outfit:{top:'t5',outerwear:null,bottom:'b4',shoes:'s4',accessory:null}}],
   profile:{height:178,chest:98,waist:84,hip:97,shoulder:46,source:'Demo profile'},
   units:'us',skin:SKINS[0],scen:'mild',event:'none',
@@ -813,13 +824,25 @@ function buildAvatar(p,o){
   if(ow){const mat=fab(ow);const sub=ow.sub;
     let inf={coat:0.034,puffer:0.05,blazer:0.026}[sub]??0.031;let y0={coat:0.56,blazer:0.8,puffer:0.8}[sub]??0.815;let slv=0;
     if(ow.id===NL.id){const gz=NL.sizes[state.brandSize];inf=Math.max(0.014,(gz.chest-p.chest)/100/(2*Math.PI)/B.s+0.008);y0=0.815-(gz.length-p.height*0.40)/100/B.s;slv=(gz.sleeve-p.height*0.355)/100/B.s}
+    const OPEN={jacket:0.62,blazer:0.8,coat:0.56}[sub]||0;
     let pts;
     if(y0<0.82){const topPts=slice(inf,0.82,1.452);const r82=B.rAt(0.82)+inf;const extra=[];const n=7;for(let i=0;i<n;i++){const y=y0+(0.82-y0)*i/n;const t=(0.82-y)/(0.82-y0);extra.push(new T.Vector2(r82*(1+0.1*t)+0.01*t,y))}pts=extra.concat(topPts)}
     else pts=slice(inf,y0,1.452);
-    g.add(lathe(pts,mat));
-    g.add(ring(pts[0].x+0.002,y0+0.004,0.008,mat));
-    g.add(ring(0.072+inf*0.7,1.455,sub==='blazer'?0.01:0.016,mat));
     const dark=std(shade(ow.color,0.7),0.8,{side:T.DoubleSide});
+    if(OPEN){
+      const lm=new T.Mesh(new T.LatheGeometry(pts,56,OPEN/2,Math.PI*2-OPEN),mat);lm.scale.set(EX,1,EZ);g.add(lm);
+      const edgeR=sub==='blazer'?0.007:0.006;
+      for(const sd of [-1,1]){
+        const ph=sd*OPEN/2;const ep=pts.filter((q,i)=>i%3===0||i===pts.length-1).map(q=>v3(Math.sin(ph)*q.x*EX,q.y,Math.cos(ph)*q.x*EZ));
+        const lap=ep.filter(q=>q.y<1.452);lap.push(v3(sd*0.07,1.452,0.045));
+        g.add(polyline(lap,edgeR,sub==='blazer'?dark:mat));
+      }
+      const back=new T.Mesh(new T.TorusGeometry(0.072+inf*0.7,0.016,8,40,Math.PI*1.3),mat);back.rotation.x=Math.PI/2;back.rotation.z=Math.PI*0.85;back.position.y=1.455;back.scale.set(EX,EZ,1);g.add(back);
+    }else{
+      g.add(lathe(pts,mat));
+      g.add(ring(pts[0].x+0.002,y0+0.004,0.008,mat));
+      g.add(ring(0.072+inf*0.7,1.455,0.016,mat));
+    }
     for(const k of ['l','r']){const j=J[k];
       g.add(ball(v3(j.S.x*0.97,1.402,0),0.072+inf*0.4,mat));
       const dir=new T.Vector3().subVectors(j.W,j.E).normalize();
@@ -827,9 +850,8 @@ function buildAvatar(p,o){
       g.add(tube(j.S,j.E,0.072+inf*0.35,0.066+inf*0.3,mat));g.add(ball(j.E,0.066+inf*0.3,mat));g.add(tube(j.E,w,0.065+inf*0.3,0.059+inf*0.3,mat));
       if(sub==='rain_jacket'||sub==='puffer')g.add(cuff(j.E,w,0.058+inf*0.3,dark,0.01));
     }
-    if(sub==='blazer'||sub==='coat'){
-      for(const sd of [-1,1])g.add(polyline([frontPt(inf,sd*0.07,1.43),frontPt(inf,sd*0.06,1.3),frontPt(inf,sd*0.012,sub==='coat'?1.12:1.06)],0.006,dark));
-      const btn=std('#1c1c1e',0.4);const ys=sub==='coat'?[1.05,0.95,0.86]:[1.0,0.92];ys.forEach(y=>g.add(ball(frontPt(inf,0.012,y),0.009,btn)));
+    if(OPEN){
+      if(sub==='jacket'){for(const sd of [-1,1]){const ph=sd*(OPEN/2+0.35);const y=1.2;const r=B.rAt(y)+inf;g.add(ball(v3(Math.sin(ph)*r*EX,y,Math.cos(ph)*r*EZ+0.002),0.008,dark))}}
     }else{
       const zip=new T.MeshStandardMaterial({color:0x2b2c30,metalness:0.6,roughness:0.35});
       g.add(frontLine(inf,Math.max(y0,0.82)+0.01,1.44,0.006,zip));
@@ -889,7 +911,7 @@ function renderToday(){
   const tips=todayCard();
   const wind=us()?`${Math.round(sc.windK*0.621)} mph`:`${sc.windK} km/h`;
   $('#todayBody').innerHTML=`
-    <div><p class="eyebrow">${esc(date)}</p><h1 class="h1">${greet()}</h1></div>
+    <div class="row"><div><p class="eyebrow">${esc(date)}</p><h1 class="h1">${greet()}</h1></div><button class="how" data-action="how" data-k="today">How</button></div>
     <div class="card wx">
       <div class="wx-top"><div><div class="wx-temp">${tDeg((sc.minC+sc.maxC)/2)}°<span class="mono" style="font-size:18px;letter-spacing:0;margin-left:4px;color:var(--muted)">${unit}</span></div>
         <div class="wx-cond">${esc(sc.cond)}</div>
@@ -906,7 +928,7 @@ function renderCloset(){
   const f=state.closetFilter, cl=state.closet;
   const list=f==='all'?cl:cl.filter(i=>i.cat===f);
   $('#closetBody').innerHTML=`
-    <div class="row"><div><p class="eyebrow">Closet</p><h1 class="h1">${cl.length} items</h1></div><button class="btn primary sm" data-action="add-item">+ Add item</button></div>
+    <div class="row"><div><p class="eyebrow">Closet</p><h1 class="h1">${cl.length} items</h1></div><div style="display:flex;gap:8px;align-items:center"><button class="how" data-action="how" data-k="closet">How</button><button class="btn primary sm" data-action="add-item">+ Add</button></div></div>
     <div class="chips scroll"><button class="chip" data-action="cat" data-cat="all" aria-pressed="${f==='all'}">All<span class="ct">${cl.length}</span></button>${CATS.map(c=>`<button class="chip" data-action="cat" data-cat="${c}" aria-pressed="${f===c}">${CAT_LABEL[c]}<span class="ct">${cl.filter(i=>i.cat===c).length}</span></button>`).join('')}</div>
     ${list.length?`<div class="grid">${list.map(i=>tagCard(i)).join('')}</div>`:`<div class="card"><p>Nothing here yet.</p><button class="btn" data-action="add-item">Add your first item</button></div>`}`;
 }
@@ -930,7 +952,7 @@ function renderLocker(){
 function renderStylist(){
   const on=state.stylistOn, S=state.style;
   $('#stylistHead').innerHTML=`<div class="row" style="align-items:center"><div><p class="eyebrow">AI stylist</p><h1 class="h1">Style me</h1></div>
-    <label class="switch" title="AI stylist on or off"><input type="checkbox" id="stylistToggle" ${on?'checked':''} aria-label="AI stylist"><span></span></label></div>
+    <div style="display:flex;gap:10px;align-items:center"><button class="how" data-action="how" data-k="stylist">How</button><label class="switch" title="AI stylist on or off"><input type="checkbox" id="stylistToggle" ${on?'checked':''} aria-label="AI stylist"><span></span></label></div></div>
     ${on?'':'<div class="card off-note"><p><b>The stylist is off.</b> Turn it on to get outfits built only from your closet, explained in one line, that learn from your thumbs up and down.</p><p class="muted small">Today tips still work without it.</p></div>'}`;
   const form=$('#stylistForm'),res=$('#stylistResult'),prof=$('#styleProfile');
   form.hidden=!on;prof.hidden=!on;res.hidden=!(on&&state.suggestion);
@@ -956,7 +978,7 @@ function renderStylist(){
 const MEAS=[['height','Height',150,205],['chest','Chest',76,130],['waist','Waist',60,120],['hip','Hips',80,130],['shoulder','Shoulders',36,54]];
 function renderMe(){
   const p=state.profile;
-  $('#meHead').innerHTML=`<div><p class="eyebrow">Body profile</p><h1 class="h1">Me</h1></div><div class="seg" role="group" aria-label="Units"><button data-action="units" data-u="us" aria-pressed="${us()}">in</button><button data-action="units" data-u="metric" aria-pressed="${!us()}">cm</button></div>`;
+  $('#meHead').innerHTML=`<div><p class="eyebrow">Body profile</p><h1 class="h1">Me</h1></div><div style="display:flex;gap:8px;align-items:center"><button class="how" data-action="how" data-k="me">How</button><div class="seg" role="group" aria-label="Units"><button data-action="units" data-u="us" aria-pressed="${us()}">in</button><button data-action="units" data-u="metric" aria-pressed="${!us()}">cm</button></div></div>`;
   $('#meBody').innerHTML=`
     <div class="card">${MEAS.map(([k,l,mn,mx])=>`<div class="mrow"><div class="mlab"><label for="m-${k}">${l}</label><span class="mono" id="mv-${k}">${k==='height'&&us()?heightStr(p[k]):len(p[k])}</span></div><input type="range" id="m-${k}" min="${mn}" max="${mx}" step="1" value="${p[k]}" data-measure="${k}"></div>`).join('')}
       <p class="muted small mono">Source: ${esc(p.source)}</p></div>
@@ -1162,6 +1184,40 @@ function fbSheet(){
     <p class="muted small">Your answer becomes a rule in My style, and the next pick uses it right away.</p>`;
 }
 
+
+const HOW={
+  today:{t:'The Today card',s:[
+    ['Weather for your city','A forecast service gives today\'s feels-like temperature, rain chance and wind. Location is optional; you can type a city instead.'],
+    ['Calendar, if you allow it','Read-only. Events become simple tags like "formal at 2 pm". Event details are never stored.'],
+    ['Rules match it to your closet','Cold means your warm jackets, rain means your waterproof gear. Tips only ever show items you own.'],
+    ['A reason to open the app daily','Later this becomes a morning notification with your outfit for the day.']],
+    p:'In this prototype the weather and calendar are preset scenarios so the demo works offline.'},
+  closet:{t:'Adding to your closet',s:[
+    ['Snap a photo','On a plain background. Upload or camera, from any phone.'],
+    ['Background removed','The item is cut out so it looks clean in your closet and can be mapped onto the 3D model.'],
+    ['AI tags it','Claude\'s vision model reads type, colors, material, pattern, warmth, formality and waterproofing.'],
+    ['You stay in control','Every tag is editable, and corrections teach the tagger.']],
+    p:'In this prototype the cut-out and color run in your browser; the full build uses a cut-out service and Claude.'},
+  locker:{t:'How try-on works',s:[
+    ['A body built from your numbers','One base 3D body with adjustable shape keys, fitted to your height, chest, waist, hips and shoulders.'],
+    ['A 3D template per clothing type','Tee, hoodie, jacket, jeans and so on, recolored from your photo, with the fabric\'s look and the print projected on the front.'],
+    ['Layers in the right order','Base layer, top, then outerwear, so outfits read the way they would in a mirror.'],
+    ['Brands make it exact','When a brand shares real garment measurements, the fit is computed for your body: snug, good or loose.']],
+    p:'This prototype uses simplified garment shapes. The full build uses detailed 3D templates.'},
+  stylist:{t:'How the AI stylist works',s:[
+    ['Only your clothes','It builds outfits from items in your closet, and every pick is checked so it can never suggest something you don\'t own.'],
+    ['Reads the day','Occasion, weather and your calendar shape the pick, with a one-line reason.'],
+    ['Learns from a thumbs down','Tell it what was off ("too formal") and the next pick changes immediately.'],
+    ['Remembers as rules you can see','Feedback becomes rules in My style. You can edit, lock or delete any of them.']],
+    p:'In this prototype the picks come from a scoring engine in your browser; the full build uses Claude with the same checks.'},
+  me:{t:'Measuring without a tape',s:[
+    ['Height sets the scale','It\'s the only number you type.'],
+    ['Two photos, measured on the phone','A pose model finds shoulders, waist and hips; the body outline gives width from the front and depth from the side.'],
+    ['Math, not guesswork','Width and depth make an ellipse, which gives each circumference.'],
+    ['Photos deleted right away','Only the numbers are saved, and you can adjust any of them.']],
+    p:'In this prototype the scan estimates measurements from your height; the full build measures the photos on your phone.'},
+};
+function howSheet(k){return ()=>{const h=HOW[k];return `<div><p class="eyebrow">How it works</p><h2 class="h2">${h.t}</h2></div><ol class="howlist">${h.s.map(([b,p],i)=>`<li><span class="n">0${i+1}</span><div><b>${b}</b><p>${p}</p></div></li>`).join('')}</ol><p class="proto">${h.p}</p><button class="btn block" data-action="close-sheet">Got it</button>`}}
 /* ---------- actions ---------- */
 function setTab(t){state.tab=t;closeSheet();renderAll();const sc=document.getElementById('screen-'+t);if(sc)sc.scrollTop=0}
 function renderAll(){renderRail();renderOnboard();if(!state.obOpen)renderScreens();else renderTabbar();queue3D()}
@@ -1194,6 +1250,7 @@ const A={
   step:el=>goStep(+el.dataset.step),
   reset:()=>{state=initialState();closeSheet();Object.keys(TEX).forEach(k=>delete TEX[k]);V.key='';renderAll();toast('Demo reset')},
   'open-demo':()=>openSheet(demoSheet),
+  how:el=>openSheet(howSheet(el.dataset.k)),
   'close-sheet':()=>closeSheet(),
   scen:el=>{state.scen=el.dataset.scen;renderToday()},
   event:el=>{state.event=el.dataset.ev;renderToday()},
